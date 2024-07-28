@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Weather App</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" type="text/css" href="/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="text-center mt-5">Weather App using NodeJS</h1>
+      <form action="/weather" method="get" class="form-inline justify-content-center mt-3">
+        <input type="text" name="city" placeholder="Enter city name" class="form-control mb-2 mr-sm-2" />
+        <button type="submit" class="btn btn-primary mb-2">Get Weather</button>
+      </form>
+      <% if (error) { %>
+      <p class="error text-center text-danger mt-3"><%= error %></p>
+      <% } else if (weather) { %>
+      <div class="card mt-3 mx-auto" style="max-width: 400px;">
+        <div class="card-body">
+          <p class="card-text">
+            <i class="fas fa-thermometer-half"></i>
+            <%= weather.current.temp_f %>&deg;F
+          </p>
+          <p class="card-text">
+            <i class="fas fa-wind"></i>
+            Wind Speed: <%= weather.current.wind_mph %> mph
+          </p>
+          <p class="card-text">
+            <i class="fas fa-cloud"></i>
+            <%= weather.current.condition.text %>
+          </p>
+          <p class="card-text">
+            <i class="fas fa-map-marker-alt"></i>
+            <%= weather.location.name %>, <%= weather.location.country %>
+          </p>
+        </div>
+      </div>
+      <% } %>
+    </div>
+  </body>
+</html>
